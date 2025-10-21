@@ -11,7 +11,7 @@ y facilita la exploración y transformación de datos.
 Instalación
 -----------
 1. Clona el repositorio:
-   git clone https://github.com/usuario/AdrianaProyectoPython.git
+   git clone https://github.com/AdrianaBernal/AdrianaProyectoPython.git
    cd mi_paquete
 
 2. Instala dependencias:
