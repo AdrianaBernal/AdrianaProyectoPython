@@ -23,7 +23,6 @@ Instalación
 Estructura del paquete
 ---------------------
 AdrianaProyectoPython/
-|
 
 ├─ __init__.py
 
