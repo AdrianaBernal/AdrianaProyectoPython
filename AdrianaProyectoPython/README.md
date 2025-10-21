@@ -22,25 +22,21 @@ Instalación
 
 Estructura del paquete
 ---------------------
+
+```text
 AdrianaProyectoPython/
-
+|
 ├─ __init__.py
-
 ├─ normalization.py      # Normalización y estandarización de vectores y dataframes
-
 ├─ discretization.py     # Discretización por igual frecuencia, igual anchura y k-means
-
 ├─ statistics.py         # Varianza, entropía, curva ROC y AUC
-
 ├─ filtering.py          # Filtrado de variables por métricas y correlación
-
 ├─ correlation.py        # Matrices de correlación e información mutua
-
 ├─ plotting.py           # Gráficos: histogramas, boxplots, ROC, heatmaps
-
 ├─ ManageDataset.py      # Clase para gestionar datasets y registrar transformaciones
-
 └─ tests/                # Tests unitarios con pytest
+
+```
 
 
 Ejemplos de uso
