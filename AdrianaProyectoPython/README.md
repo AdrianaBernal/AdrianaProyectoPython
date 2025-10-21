@@ -50,13 +50,16 @@ from AdrianaProyectoPython import normalization
 import pandas as pd
 
 df = pd.DataFrame({"a": [1,2,3], "b":[4,5,6]})
+
 df_norm = normalization.getNormalizedDF(df)
+
 df_std = normalization.getStandardizedDF(df)
 
 Discretización
 from AdrianaProyectoPython import discretization
 
 x = [1, 2, 3, 4, 5]
+
 discrete_ew = discretization.discretizeEW(x, 3)
 
 Cálculo de métricas
@@ -64,6 +67,7 @@ from AdrianaProyectoPython import statistics
 import numpy as np
 
 var = statistics.getVectorVarianzas(pd.DataFrame({"a": np.arange(5)}))
+
 ent = statistics.getVectorEntropia(pd.DataFrame({"b": ["x","y","x","z","y"]}))
 
 Filtrado de variables
@@ -74,13 +78,16 @@ Gestión de datasets
 from AdrianaProyectoPython import ManageDataset
 
 md = ManageDataset.ManagedDataset(df, name="MiDataset")
+
 md = ManageDataset.addTransformation(md, "Normalizado")
+
 data = ManageDataset.getData(md)
 
 Visualización
 from mi_paquete import plotting
 
 plotting.plot_correlation_matrix(df)
+
 plotting.plotHistograms(df)
 
 Tests
