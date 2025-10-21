@@ -34,6 +34,7 @@ AdrianaProyectoPython/
 ├─ ManageDataset.py      # Clase para gestionar datasets y registrar transformaciones
 └─ tests/                # Tests unitarios con pytest
 
+
 Ejemplos de uso
 ---------------
 Normalización y estandarización
