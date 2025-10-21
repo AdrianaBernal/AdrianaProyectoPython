@@ -45,50 +45,52 @@ AdrianaProyectoPython/
 
 Ejemplos de uso
 ---------------
-Normalización y estandarización
+# Normalización y estandarización
+```python
 from AdrianaProyectoPython import normalization
 import pandas as pd
-
 df = pd.DataFrame({"a": [1,2,3], "b":[4,5,6]})
-
 df_norm = normalization.getNormalizedDF(df)
-
 df_std = normalization.getStandardizedDF(df)
+```
 
-Discretización
+# Discretización
+```python
 from AdrianaProyectoPython import discretization
-
 x = [1, 2, 3, 4, 5]
-
 discrete_ew = discretization.discretizeEW(x, 3)
+```
 
-Cálculo de métricas
+# Cálculo de métricas
+```python
 from AdrianaProyectoPython import statistics
 import numpy as np
-
 var = statistics.getVectorVarianzas(pd.DataFrame({"a": np.arange(5)}))
-
 ent = statistics.getVectorEntropia(pd.DataFrame({"b": ["x","y","x","z","y"]}))
+```
 
-Filtrado de variables
+# Filtrado de variables
+```python
 from AdrianaProyectoPython import filtering
 df_filtered = filtering.filterByVariance(df, threshold=0.5)
+```
 
-Gestión de datasets
+# Gestión de datasets
+```python
 from AdrianaProyectoPython import ManageDataset
-
 md = ManageDataset.ManagedDataset(df, name="MiDataset")
-
 md = ManageDataset.addTransformation(md, "Normalizado")
-
 data = ManageDataset.getData(md)
+```
 
-Visualización
+
+# Visualización
+```python
 from mi_paquete import plotting
-
 plotting.plot_correlation_matrix(df)
-
 plotting.plotHistograms(df)
+```
+
 
 Tests
 -----
