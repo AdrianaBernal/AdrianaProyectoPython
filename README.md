@@ -21,6 +21,12 @@ Instalación
    pip install -e .
 ```
 
+3. Probar los tests
+```python
+   cd AdrianaProyectoPython
+   pytest test
+```
+
 Estructura del paquete
 ---------------------
 
