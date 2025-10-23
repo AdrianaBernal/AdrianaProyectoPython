@@ -9,6 +9,9 @@ from .correlation import get_correlation_matrix
 # Heatmap de correlación
 # --------------------------------------
 def plot_correlation_matrix(df: pd.DataFrame):
+    """
+    Genera un mapa de calor (heatmap) con la matriz de correlación de un DataFrame.
+    """
     cor_mat = get_correlation_matrix(df)
     plt.figure(figsize=(8,6))
     sns.heatmap(cor_mat, annot=True, fmt=".2f", cmap="coolwarm", cbar=True)
@@ -19,6 +22,12 @@ def plot_correlation_matrix(df: pd.DataFrame):
 # Curva ROC con AUC
 # --------------------------------------
 def plotROC(df: pd.DataFrame):
+    """
+    Dibuja la curva ROC (Receiver Operating Characteristic) y muestra el valor del AUC.
+
+    Usa los resultados de la función get_ROC_AUC para graficar la relación entre
+    la tasa de verdaderos positivos (TPR) y falsos positivos (FPR).
+    """
     roc_result = get_ROC_AUC(df)
     roc_points = roc_result['roc_points']
     auc = roc_result['auc']
@@ -36,6 +45,9 @@ def plotROC(df: pd.DataFrame):
 # Entropía normalizada por variable
 # --------------------------------------
 def plot_normalized_entropy(df: pd.DataFrame):
+    """
+    Calcula y grafica la entropía normalizada de cada variable categórica del DataFrame.
+    """
     entropies = {}
     for col in df.columns:
         col_data = df[col].astype('category')
@@ -55,6 +67,9 @@ def plot_normalized_entropy(df: pd.DataFrame):
 # Heatmap de correlaciones (seaborn)
 # --------------------------------------
 def plotCorrelationHeatmap(df: pd.DataFrame):
+    """
+    Dibuja un mapa de calor de la matriz de correlación.
+    """
     cor_mat = get_correlation_matrix(df)
     plt.figure(figsize=(8,6))
     sns.heatmap(cor_mat, annot=True, fmt=".2f", cmap="RdBu_r", center=0)
@@ -65,6 +80,9 @@ def plotCorrelationHeatmap(df: pd.DataFrame):
 # Heatmap de información mutua
 # --------------------------------------
 def plotMutualInfoHeatmap(df: pd.DataFrame):
+    """
+    Calcula y visualiza un mapa de calor de la información mutua entre las variables.
+    """
     df = df.apply(lambda x: x.astype('category'))
     n = df.shape[1]
     mi_mat = pd.DataFrame(np.zeros((n, n)), columns=df.columns, index=df.columns)
@@ -92,6 +110,10 @@ def plotMutualInfoHeatmap(df: pd.DataFrame):
 # Histogramas para variables numéricas
 # --------------------------------------
 def plotHistograms(df: pd.DataFrame):
+    """
+    Genera histogramas individuales para todas las variables numéricas de un DataFrame.
+    """
+
     num_cols = df.select_dtypes(include='number').columns
     for col in num_cols:
         plt.figure()
@@ -105,6 +127,9 @@ def plotHistograms(df: pd.DataFrame):
 # Boxplots para variables numéricas
 # --------------------------------------
 def plotBoxplots(df: pd.DataFrame):
+    """
+    Genera boxplots individuales para todas las variables numéricas de un DataFrame.
+    """
     num_cols = df.select_dtypes(include='number').columns
     for col in num_cols:
         plt.figure()
