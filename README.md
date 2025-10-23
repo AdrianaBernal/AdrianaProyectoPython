@@ -13,15 +13,10 @@ Instalación
 1. Clona el repositorio:
 ```python
    git clone https://github.com/AdrianaBernal/AdrianaProyectoPython.git
-   cd AdrianaProyectoPython
+   cd AdrianaProyectoPython/AdrianaProyectoPython
 ```
 
-3. Instala dependencias:
-```python
-   pip install -r requirements.txt
-```
-
-4. Instala el paquete localmente:
+2. Instala el paquete localmente:
 ```python
    pip install -e .
 ```
