@@ -17,10 +17,14 @@ Instalación
 ```
 
 3. Instala dependencias:
+```python
    pip install -r requirements.txt
+```
 
 4. Instala el paquete localmente:
+```python
    pip install -e .
+```
 
 Estructura del paquete
 ---------------------
