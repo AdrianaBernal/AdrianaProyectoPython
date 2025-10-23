@@ -92,7 +92,10 @@ plotting.plotHistograms(df)
 Tests
 -----
 Ejecutar todos los tests:
+```python
 pytest AdrianaProyectoPython/test
+```
+
 
 Requisitos
 ----------
