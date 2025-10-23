@@ -21,12 +21,6 @@ Instalación
    pip install -e .
 ```
 
-3. Probar los tests
-```python
-   cd AdrianaProyectoPython
-   pytest test
-```
-
 Estructura del paquete
 ---------------------
 
@@ -53,43 +47,43 @@ Ejemplos de uso
 from AdrianaProyectoPython import normalization
 import pandas as pd
 df = pd.DataFrame({"a": [1,2,3], "b":[4,5,6]})
-df_norm = normalization.getNormalizedDF(df)
-df_std = normalization.getStandardizedDF(df)
+df_norm = normalization.get_normalized_df(df)
+df_std = normalization.get_standardized_df(df)
 ```
 
 # Discretización
 ```python
 from AdrianaProyectoPython import discretization
 x = [1, 2, 3, 4, 5]
-discrete_ew = discretization.discretizeEW(x, 3)
+discrete_ew = discretization.discretize_EW(x, 3)
 ```
 
 # Cálculo de métricas
 ```python
 from AdrianaProyectoPython import statistics
 import numpy as np
-var = statistics.getVectorVarianzas(pd.DataFrame({"a": np.arange(5)}))
-ent = statistics.getVectorEntropia(pd.DataFrame({"b": ["x","y","x","z","y"]}))
+var = statistics.get_vector_variances(pd.DataFrame({"a": np.arange(5)}))
+ent = statistics.get_vector_entropy(pd.DataFrame({"b": ["x","y","x","z","y"]}))
 ```
 
 # Filtrado de variables
 ```python
 from AdrianaProyectoPython import filtering
-df_filtered = filtering.filterByVariance(df, threshold=0.5)
+df_filtered = filtering.filter_by_variance(df, threshold=0.5)
 ```
 
 # Gestión de datasets
 ```python
 from AdrianaProyectoPython import ManageDataset
 md = ManageDataset.ManagedDataset(df, name="MiDataset")
-md = ManageDataset.addTransformation(md, "Normalizado")
-data = ManageDataset.getData(md)
+md.add_transformation("Normalizado")
+data = md.getData()
 ```
 
 
 # Visualización
 ```python
-from mi_paquete import plotting
+from AdrianaProyectoPython import plotting
 plotting.plot_correlation_matrix(df)
 plotting.plotHistograms(df)
 ```
@@ -98,7 +92,7 @@ plotting.plotHistograms(df)
 Tests
 -----
 Ejecutar todos los tests:
-pytest AdrianaProyectoPython/tests
+pytest AdrianaProyectoPython/test
 
 Requisitos
 ----------
