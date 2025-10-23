@@ -9,7 +9,6 @@ setup(
    url='https://github.com/tu_usuario/mi_paquete',
    license='LICENSE.txt',
    description='Paquete para preprocesamiento, análisis y visualización de datasets',
-   long_description=open('README.txt').read(),
    tests_require=['pytest'],
    install_requires=[
       "seaborn >= 0.9.0",
