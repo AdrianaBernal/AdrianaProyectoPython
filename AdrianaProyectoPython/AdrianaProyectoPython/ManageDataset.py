@@ -40,6 +40,23 @@ class ManagedDataset:
     # --------------------------------------
     def read_dataset(file: str, format: str = "csv", name: str = "Dataset", 
                      description: str = "", sheet = 0):
+    """
+    Lee un dataset desde un archivo en distintos formatos y lo devuelve como un objeto ManagedDataset.
+
+    Args:
+        file (str): Ruta al archivo de datos.
+        format (str, opcional): Formato del archivo. Valores permitidos: 'csv', 'tsv', 'excel', 'pickle'. 
+            Por defecto es 'csv'.
+        name (str, opcional): Nombre identificativo del dataset. Por defecto es 'Dataset'.
+        description (str, opcional): Descripción breve del dataset. Por defecto es cadena vacía.
+        sheet (int, opcional): Índice o nombre de la hoja a leer en archivos Excel. Por defecto es 0.
+
+    Returns:
+        ManagedDataset: Objeto que contiene el DataFrame leído junto con su nombre y descripción.
+
+    Raises:
+        ValueError: Si el formato especificado no está soportado.
+    """
         file_path = Path(file)
         format = format.lower()
         
@@ -60,6 +77,21 @@ class ManagedDataset:
     # Guardar dataset en varios formatos
     # --------------------------------------
     def save_dataset(self, file: str, format: str = "csv", sheet: str = "Sheet1"):
+    """
+    Guarda el dataset actual en un archivo en distintos formatos.
+
+    Args:
+        file (str): Ruta donde se guardará el archivo.
+        format (str, opcional): Formato de salida. Valores permitidos: 'csv', 'tsv', 'excel', 'pickle'.
+            Por defecto es 'csv'.
+        sheet (str, opcional): Nombre de la hoja al exportar a Excel. Por defecto es 'Sheet1'.
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: Si el formato especificado no está soportado.
+    """
         format = format.lower()
         file_path = Path(file)
 
