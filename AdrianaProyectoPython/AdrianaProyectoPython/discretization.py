@@ -6,6 +6,21 @@ from sklearn.cluster import KMeans
 # Discretización por intervalos de igual anchura
 # --------------------------------------
 def discretize_EW(x: pd.Series | np.ndarray, num_bins: int):
+    """
+    Discretiza una variable numérica en intervalos de igual anchura.
+
+    Divide el rango de valores en intervalos equidistantes y asigna una etiqueta
+    a cada uno de ellos.
+
+    Args:
+        x (pd.Series | np.ndarray): Variable numérica a discretizar.
+        num_bins (int): Número de intervalos o bins a generar.
+
+    Returns:
+        dict: Diccionario con dos elementos:
+            - "x_discretized" (pd.Series): Variable discretizada con etiquetas.
+            - "cut_points" (np.ndarray): Puntos de corte utilizados para la discretización.
+    """
     x = np.array(x, dtype=float)
     min_val = np.nanmin(x)
     max_val = np.nanmax(x)
@@ -20,6 +35,21 @@ def discretize_EW(x: pd.Series | np.ndarray, num_bins: int):
 # Discretización por intervalos de igual frecuencia
 # --------------------------------------
 def discretize_EF(x: pd.Series | np.ndarray, num_bins: int):
+    """
+    Discretiza una variable numérica en intervalos de igual frecuencia (cuantiles).
+
+    Los intervalos se definen de manera que cada uno contenga aproximadamente
+    el mismo número de observaciones.
+
+    Args:
+        x (pd.Series | np.ndarray): Variable numérica a discretizar.
+        num_bins (int): Número de intervalos o bins a generar.
+
+    Returns:
+        dict: Diccionario con dos elementos:
+            - "x_discretized" (pd.Series): Variable discretizada.
+            - "cut_points" (np.ndarray): Puntos de corte usados (cuantiles).
+    """
     x = np.array(x, dtype=float)
     probs = np.linspace(0, 1, num_bins + 1)
     cut_points = np.unique(np.quantile(x, probs))
@@ -30,6 +60,16 @@ def discretize_EF(x: pd.Series | np.ndarray, num_bins: int):
 # Discretización usando puntos de corte dados
 # --------------------------------------
 def discretize(x: pd.Series | np.ndarray, cut_points: np.ndarray):
+    """
+    Discretiza una variable numérica utilizando puntos de corte especificados.
+
+    Args:
+        x (pd.Series | np.ndarray): Variable numérica a discretizar.
+        cut_points (np.ndarray): Puntos de corte definidos manualmente.
+
+    Returns:
+        pd.Categorical: Variable discretizada según los puntos de corte.
+    """
     breaks = np.concatenate(([-np.inf], cut_points, [np.inf]))
     return pd.cut(x, bins=breaks, include_lowest=True)
 
@@ -37,6 +77,21 @@ def discretize(x: pd.Series | np.ndarray, cut_points: np.ndarray):
 # Discretización basada en K-Means
 # --------------------------------------
 def discretize_KMeans(x: pd.Series | np.ndarray, num_bins: int):
+    """
+    Discretiza una variable numérica utilizando el algoritmo K-Means.
+
+    Los centroides de los clústeres se usan como puntos de corte para definir
+    los intervalos de discretización.
+
+    Args:
+        x (pd.Series | np.ndarray): Variable numérica a discretizar.
+        num_bins (int): Número de clústeres o intervalos deseados.
+
+    Returns:
+        dict: Diccionario con dos elementos:
+            - "x_discretized" (pd.Categorical): Variable discretizada según los clústeres.
+            - "cut_points" (np.ndarray): Puntos de corte obtenidos de los centroides de K-Means.
+    """
     x = np.array(x, dtype=float).reshape(-1, 1)
     unique_vals = len(np.unique(x))
     if unique_vals < num_bins:
@@ -56,6 +111,24 @@ def discretize_KMeans(x: pd.Series | np.ndarray, num_bins: int):
 # Discretización de un DataFrame completo
 # --------------------------------------
 def get_discretized_df(df: pd.DataFrame, num_bins: int) -> pd.DataFrame:
+    """
+    Discretiza todas las columnas numéricas de un DataFrame utilizando
+    tres métodos: igual anchura, igual frecuencia y K-Means.
+
+    Para cada columna numérica se generan tres nuevas columnas con los sufijos:
+    '_EW', '_EF' y '_KM', correspondientes a los tres métodos de discretización.
+
+    Args:
+        df (pd.DataFrame): DataFrame original con las variables numéricas.
+        num_bins (int): Número de intervalos o bins a aplicar.
+
+    Returns:
+        pd.DataFrame: DataFrame extendido con las columnas discretizadas.
+
+    Warnings:
+        Si alguna columna no puede discretizarse correctamente, se emite una
+        advertencia y se asigna pd.NA a las columnas resultantes.
+    """
     df_discrete = df.copy()
     
     for col in df.columns:
