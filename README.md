@@ -11,13 +11,15 @@ y facilita la exploración y transformación de datos.
 Instalación
 -----------
 1. Clona el repositorio:
+```python
    git clone https://github.com/AdrianaBernal/AdrianaProyectoPython.git
-   cd mi_paquete
+   cd AdrianaProyectoPython
+```
 
-2. Instala dependencias:
+3. Instala dependencias:
    pip install -r requirements.txt
 
-3. Instala el paquete localmente:
+4. Instala el paquete localmente:
    pip install -e .
 
 Estructura del paquete
